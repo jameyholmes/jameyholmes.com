@@ -9,7 +9,7 @@
 //   GITHUB_REPO          — e.g. "jameyholmes/jameyholmes.com"
 //   GITHUB_BRANCH        — e.g. "main"
 
-const fetch = (...args) => import('node-fetch').then(({default: f}) => f(...args));
+// Native fetch is available in Node 18+
 
 const TELEGRAM_API = `https://api.telegram.org/bot${process.env.TELEGRAM_BOT_TOKEN}`;
 const GITHUB_API = 'https://api.github.com';
