@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Holmes Family · FIFA World Cup 2026</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚽</text></svg>"/>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--black:#0a0a0a;--white:#f5f2eb;--red:#d42b2b;--gold:#f0a500;--green:#1a6b3c;--gray:#888;--border:rgba(255,255,255,0.1);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.6;overflow-x:hidden;}
+
+nav{position:sticky;top:0;z-index:1000;background:rgba(10,10,10,0.95);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:0 2.5rem;display:flex;align-items:center;justify-content:space-between;height:58px;}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:0.05em;color:var(--white);text-decoration:none;}
+.nav-logo .accent{color:var(--gold);}
+.nav-links{display:flex;gap:2.5rem;list-style:none;}
+.nav-links a{color:var(--gray);text-decoration:none;font-size:13px;font-weight:500;text-transform:uppercase;letter-spacing:0.1em;transition:color 0.2s;}
+.nav-links a:hover{color:var(--white);}
+
+.hero{display:grid;grid-template-columns:1fr 1fr;height:calc(100vh - 58px);min-height:600px;border-bottom:1px solid var(--border);}
+.hero-left{display:flex;flex-direction:column;justify-content:flex-end;padding:3.5rem 3rem 4rem;position:relative;overflow:hidden;border-right:1px solid var(--border);}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 20% 80%,rgba(240,165,0,0.06) 0%,transparent 60%),radial-gradient(ellipse 60% 50% at 80% 20%,rgba(212,43,43,0.07) 0%,transparent 55%);}
+.hero-grid{position:absolute;inset:0;opacity:0.025;background-image:linear-gradient(var(--white) 1px,transparent 1px),linear-gradient(90deg,var(--white) 1px,transparent 1px);background-size:52px 52px;}
+.hero-flag{position:absolute;top:0;left:0;width:5px;height:100%;background:linear-gradient(to bottom,var(--red) 33.3%,var(--white) 33.3%,var(--white) 66.6%,var(--green) 66.6%);opacity:0.3;}
+.hero-eyebrow{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.22em;color:var(--gold);margin-bottom:1rem;position:relative;z-index:1;animation:fadeUp 0.7s ease both;}
+.hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(64px,9vw,130px);line-height:0.9;letter-spacing:0.02em;color:var(--white);position:relative;z-index:1;animation:fadeUp 0.7s 0.08s ease both;}
+.hero-title .accent{color:var(--gold);}
+.hero-title .stroke{-webkit-text-stroke:2px rgba(245,242,235,0.5);color:transparent;}
+.hero-sub{font-size:15px;color:rgba(245,242,235,0.4);margin-top:1.5rem;max-width:380px;font-weight:300;line-height:1.6;position:relative;z-index:1;animation:fadeUp 0.7s 0.16s ease both;}
+.hero-stats{display:flex;gap:2rem;margin-top:2.5rem;position:relative;z-index:1;animation:fadeUp 0.7s 0.24s ease both;}
+.stat-num{font-family:'Bebas Neue',sans-serif;font-size:44px;color:var(--white);line-height:1;}
+.stat-label{font-size:10px;text-transform:uppercase;letter-spacing:0.14em;color:var(--gray);margin-top:3px;}
+.stat-divider{width:1px;background:var(--border);align-self:stretch;}
+.hero-right{position:relative;overflow:hidden;}
+#hero-map{position:absolute;inset:0;width:100%;height:100%;}
+
+.leaflet-container{background:#0d1117 !important;}
+.leaflet-popup-content-wrapper{background:#1c1c1c !important;color:var(--white) !important;border:1px solid rgba(255,255,255,0.12) !important;border-radius:10px !important;box-shadow:0 12px 40px rgba(0,0,0,0.8) !important;}
+.leaflet-popup-tip{background:#1c1c1c !important;}
+.leaflet-popup-content{font-family:'DM Sans',sans-serif !important;margin:10px 14px !important;}
+.leaflet-control-zoom a{background:rgba(20,20,20,0.9) !important;color:var(--white) !important;border-color:rgba(255,255,255,0.1) !important;}
+.leaflet-control-zoom a:hover{background:rgba(40,40,40,0.95) !important;}
+.leaflet-control-attribution{background:rgba(10,10,10,0.7) !important;color:rgba(255,255,255,0.3) !important;font-size:10px !important;}
+.leaflet-control-attribution a{color:rgba(255,255,255,0.4) !important;}
+.map-overlay{position:absolute;top:16px;left:16px;z-index:500;background:rgba(10,10,10,0.85);backdrop-filter:blur(10px);border:1px solid var(--border);border-radius:8px;padding:10px 14px;pointer-events:none;}
+.map-overlay strong{color:var(--gold);font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:0.05em;display:block;line-height:1;}
+.map-overlay span{font-size:11px;color:var(--gray);text-transform:uppercase;letter-spacing:0.1em;}
+
+section{padding:5.5rem 2.5rem;border-bottom:1px solid var(--border);}
+.section-label{font-size:11px;text-transform:uppercase;letter-spacing:0.2em;color:var(--gold);margin-bottom:0.5rem;}
+.section-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(48px,7vw,80px);color:var(--white);margin-bottom:2.5rem;line-height:1;}
+
+/* POSTS */
+#posts-container{display:flex;flex-direction:column;gap:3rem;max-width:820px;}
+.post-card{background:#0f0f0f;border:1px solid var(--border);border-radius:12px;overflow:hidden;}
+.post-card-header{padding:1.5rem 1.75rem 1.25rem;}
+.post-meta{display:flex;align-items:center;gap:10px;margin-bottom:0.875rem;flex-wrap:wrap;}
+.post-tag{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;padding:3px 10px;border-radius:4px;background:rgba(240,165,0,0.12);color:var(--gold);border:1px solid rgba(240,165,0,0.25);}
+.post-date{font-size:12px;color:var(--gray);text-transform:uppercase;letter-spacing:0.08em;}
+.post-location{font-size:12px;color:var(--gray);}
+.post-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(28px,4vw,44px);letter-spacing:0.02em;line-height:1.05;color:var(--white);margin-bottom:0.875rem;}
+.post-body{font-size:15px;color:rgba(245,242,235,0.72);line-height:1.8;}
+
+/* Photo grid */
+.post-images{display:grid;gap:3px;}
+.post-images.count-1{grid-template-columns:1fr;}
+.post-images.count-2{grid-template-columns:1fr 1fr;}
+.post-images.count-3{grid-template-columns:1fr 1fr;grid-template-rows:auto auto;}
+.post-images.count-3 .img-wrap:first-child{grid-column:1/-1;}
+.post-images.count-4{grid-template-columns:1fr 1fr;}
+.img-wrap{overflow:hidden;background:#1a1a1a;aspect-ratio:4/3;cursor:zoom-in;}
+.img-wrap img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.35s;}
+.img-wrap:hover img{transform:scale(1.04);}
+
+/* Reactions bar */
+.post-reactions{display:flex;align-items:center;gap:1rem;padding:0.875rem 1.75rem;border-top:1px solid var(--border);}
+.reaction-btn{background:none;border:1px solid var(--border);border-radius:20px;padding:5px 14px;color:var(--gray);font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;transition:all 0.2s;font-family:'DM Sans',sans-serif;}
+.reaction-btn:hover{border-color:rgba(240,165,0,0.4);color:var(--white);}
+.reaction-btn.reacted{border-color:var(--gold);color:var(--gold);background:rgba(240,165,0,0.08);}
+.reaction-count{font-size:13px;font-weight:600;}
+
+/* Comments toggle */
+.comments-toggle{margin-left:auto;background:none;border:none;color:var(--gray);font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif;display:flex;align-items:center;gap:6px;padding:5px 0;transition:color 0.2s;}
+.comments-toggle:hover{color:var(--white);}
+
+/* Cusdis embed wrapper */
+.comments-wrapper{padding:1.5rem 1.75rem;border-top:1px solid var(--border);display:none;}
+.comments-wrapper.open{display:block;}
+/* Override Cusdis for dark theme */
+#cusdis_thread iframe{color-scheme:dark;}
+
+/* Lightbox */
+#lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.93);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out;}
+#lightbox.open{display:flex;}
+#lightbox img{max-width:92vw;max-height:90vh;object-fit:contain;border-radius:4px;}
+#lb-close{position:absolute;top:1.25rem;right:1.5rem;font-size:28px;color:rgba(255,255,255,0.45);cursor:pointer;}
+#lb-close:hover{color:var(--white);}
+
+/* ITINERARY */
+.itin-list{display:flex;flex-direction:column;max-width:640px;}
+.itin-item{display:grid;grid-template-columns:32px 1fr;gap:0 1.25rem;padding:0 0 2rem;position:relative;}
+.itin-line{position:absolute;left:15px;top:32px;bottom:0;width:2px;background:linear-gradient(to bottom,rgba(240,165,0,0.6),rgba(240,165,0,0.05));}
+.itin-dot{width:32px;height:32px;border-radius:50%;background:var(--black);border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;font-size:14px;position:relative;z-index:1;flex-shrink:0;}
+.itin-dot.match{background:rgba(240,165,0,0.12);}
+.itin-content{padding-top:4px;}
+.itin-num{font-size:10px;text-transform:uppercase;letter-spacing:0.15em;color:var(--gray);margin-bottom:2px;}
+.itin-name{font-weight:600;font-size:16px;color:var(--white);}
+.itin-detail{font-size:13px;color:var(--gray);margin-top:2px;line-height:1.5;}
+.itin-badge{display:inline-block;margin-top:6px;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;padding:3px 9px;border-radius:4px;background:rgba(240,165,0,0.12);color:var(--gold);border:1px solid rgba(240,165,0,0.25);}
+
+/* MATCHES */
+.match-item{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:1.5rem;padding:1.5rem 0;border-bottom:1px solid var(--border);}
+.match-flag{font-size:28px;line-height:1;}
+.match-teams{font-size:18px;font-weight:600;color:var(--white);}
+.match-venue{font-size:13px;color:var(--gray);margin-top:3px;}
+.badge{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;padding:5px 12px;border-radius:5px;white-space:nowrap;}
+.badge-gold{background:rgba(240,165,0,0.12);color:var(--gold);border:1px solid rgba(240,165,0,0.25);}
+
+footer{padding:3rem 2.5rem;display:flex;align-items:center;justify-content:space-between;}
+.footer-logo{font-family:'Bebas Neue',sans-serif;font-size:32px;letter-spacing:0.05em;color:rgba(245,242,235,0.12);}
+.footer-right{font-size:13px;color:rgba(245,242,235,0.2);text-align:right;}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr;grid-template-rows:auto 50vh;height:auto;}
+  .hero-left{padding:3rem 1.5rem;border-right:none;border-bottom:1px solid var(--border);}
+  .hero-right{height:50vh;}
+  .map-overlay{display:none;}
+}
+@media(max-width:640px){
+  nav{padding:0 1.25rem;}
+  .nav-links{gap:1.25rem;}
+  .nav-links a{font-size:11px;}
+  section{padding:3.5rem 1.25rem;}
+  .hero-stats{gap:1.25rem;flex-wrap:wrap;}
+  .match-item{grid-template-columns:1fr;gap:0.5rem;}
+  .match-flag,.badge{display:none;}
+  footer{flex-direction:column;gap:0.5rem;text-align:center;}
+  .footer-right{text-align:center;}
+  .post-card-header{padding:1.25rem;}
+  .post-reactions{padding:0.875rem 1.25rem;}
+  .comments-wrapper{padding:1.25rem;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#">Holmes <span class="accent">⚽</span> World Cup</a>
+  <ul class="nav-links">
+    <li><a href="#blog">Updates</a></li>
+    <li><a href="#itinerary">Route</a></li>
+    <li><a href="#matches">Matches</a></li>
+  </ul>
+</nav>
+
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-bg"></div><div class="hero-grid"></div><div class="hero-flag"></div>
+    <div class="hero-eyebrow">FIFA World Cup 2026 · West Coast USA</div>
+    <h1 class="hero-title">Holmes<br/><span class="stroke">Family</span><br/><span class="accent">Trip.</span></h1>
+    <p class="hero-sub">Three weeks. Eleven stops. Three USA group stage matches. Following the greatest tournament on American soil.</p>
+    <div class="hero-stats">
+      <div><div class="stat-num">11</div><div class="stat-label">Stops</div></div>
+      <div class="stat-divider"></div>
+      <div><div class="stat-num">3</div><div class="stat-label">Matches</div></div>
+      <div class="stat-divider"></div>
+      <div><div class="stat-num">~3k</div><div class="stat-label">Miles</div></div>
+      <div class="stat-divider"></div>
+      <div><div class="stat-num" style="font-size:32px;padding-top:8px;">📍</div><div class="stat-label">NJ → LA</div></div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div id="hero-map"></div>
+    <div class="map-overlay"><strong>11</strong><span>stops on route</span></div>
+  </div>
+</div>
+
+<!-- BLOG -->
+<section id="blog">
+  <div class="section-label">On the ground</div>
+  <h2 class="section-title">From the Road</h2>
+  <div id="posts-container"><p style="color:var(--gray)">Loading...</p></div>
+</section>
+
+<!-- ITINERARY -->
+<section id="itinerary">
+  <div class="section-label">The full route</div>
+  <h2 class="section-title">Itinerary</h2>
+  <div class="itin-list">
+    <div class="itin-item"><div class="itin-line"></div><div class="itin-dot match">⚽</div><div class="itin-content"><div class="itin-num">Stop 1</div><div class="itin-name">Los Angeles, CA</div><div class="itin-detail">Fly in · USA vs Paraguay</div><span class="itin-badge">⚽ Match · SoFi Stadium</span></div></div>
+    <div class="itin-item"><div class="itin-line"></div><div class="itin-dot">🏔️</div><div class="itin-content"><div class="itin-num">Stop 2</div><div class="itin-name">Yosemite National Park, CA</div><div class="itin-detail">El Capitan · Half Dome · Valley hiking</div></div></div>
+    <div class="itin-item"><div class="itin-line"></div><div class="itin-dot">📸</div><div class="itin-content"><div class="itin-num">Stop 3</div><div class="itin-name">San Francisco, CA</div><div class="itin-detail">Golden Gate · Fisherman's Wharf · Haight-Ashbury</div></div></div>
+    <div class="itin-item"><div class="itin-line"></div><div class="itin-dot">🌲</div><div class="itin-content"><div class="itin-num">Stop 4</div><div class="itin-name">Redwoods, CA</div><div class="itin-detail">Redwood National & State Parks · Avenue of the Giants</div></div></div>
+    <div class="itin-item"><div class="itin-line"></div><div class="itin-dot">🌋</div><div class="itin-content"><div class="itin-num">Stop 5</div><div class="itin-name">Crater Lake, OR</div><div class="itin-detail">Deepest lake in the US · Rim Drive overlooks</div></div></div>
+    <div class="itin-item"><div class="itin-line"></div><div class="itin-dot">🗻</div><div class="itin-content"><div class="itin-num">Stop 6</div><div class="itin-name">Mt. St. Helens, WA</div><div class="itin-detail">Johnston Ridge Observatory · volcanic landscape</div></div></div>
+    <div class="itin-item"><div class="itin-line"></div><div class="itin-dot match">⚽</div><div class="itin-content"><div class="itin-num">Stop 7</div><div class="itin-name">Seattle, WA</div><div class="itin-detail">Pike Place Market · Space Needle · USA vs Australia</div><span class="itin-badge">⚽ Match · Lumen Field</span></div></div>
+    <div class="itin-item"><div class="itin-line"></div><div class="itin-dot">🎰</div><div class="itin-content"><div class="itin-num">Stop 8</div><div class="itin-name">Las Vegas, NV</div><div class="itin-detail">The Strip · Sphere · overnight stop</div></div></div>
+    <div class="itin-item"><div class="itin-line"></div><div class="itin-dot">🏜️</div><div class="itin-content"><div class="itin-num">Stop 9</div><div class="itin-name">Grand Canyon, AZ</div><div class="itin-detail">South Rim · Bright Angel Trail · sunset views</div></div></div>
+    <div class="itin-item"><div class="itin-line"></div><div class="itin-dot">🏖️</div><div class="itin-content"><div class="itin-num">Stop 10</div><div class="itin-name">Santa Monica, CA</div><div class="itin-detail">Santa Monica Pier · beach days</div></div></div>
+    <div class="itin-item"><div class="itin-dot match">⚽</div><div class="itin-content"><div class="itin-num">Stop 11</div><div class="itin-name">Los Angeles, CA</div><div class="itin-detail">USA vs Turkey · fly home from LAX</div><span class="itin-badge">⚽ Match · SoFi Stadium</span></div></div>
+  </div>
+</section>
+
+<!-- MATCHES -->
+<section id="matches">
+  <div class="section-label">The reason we're here</div>
+  <h2 class="section-title">Match Schedule</h2>
+  <div>
+    <div class="match-item"><div class="match-flag">🇺🇸🆚🇵🇾</div><div><div class="match-teams">USA vs Paraguay</div><div class="match-venue">📍 SoFi Stadium · Los Angeles, CA</div></div><span class="badge badge-gold">Attending ⚽</span></div>
+    <div class="match-item"><div class="match-flag">🇺🇸🆚🇦🇺</div><div><div class="match-teams">USA vs Australia</div><div class="match-venue">📍 Lumen Field · Seattle, WA</div></div><span class="badge badge-gold">Attending ⚽</span></div>
+    <div class="match-item"><div class="match-flag">🇺🇸🆚🇹🇷</div><div><div class="match-teams">USA vs Turkey</div><div class="match-venue">📍 SoFi Stadium · Los Angeles, CA</div></div><span class="badge badge-gold">Attending ⚽</span></div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">Holmes 2026</div>
+  <div class="footer-right">Jamey · Julia · and the crew<br/>West Coast USA · June 2026</div>
+</footer>
+
+<div id="lightbox"><span id="lb-close">✕</span><img id="lb-img" src="" alt=""/></div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+// ── MAP ──────────────────────────────────────────────────────────────────────
+const stops=[
+  {lat:34.0522,lng:-118.2437,name:"Los Angeles",emoji:"⚽",color:"#f0a500",label:"USA vs Paraguay · SoFi Stadium",type:"match"},
+  {lat:37.7749,lng:-119.5674,name:"Yosemite",emoji:"🏔️",color:"#22c55e",label:"National Park",type:"nature"},
+  {lat:37.7749,lng:-122.4194,name:"San Francisco",emoji:"📸",color:"#a855f7",label:"Golden Gate · Fisherman's Wharf",type:"nature"},
+  {lat:41.2132,lng:-124.0046,name:"Redwoods",emoji:"🌲",color:"#16a34a",label:"Redwood National & State Parks",type:"nature"},
+  {lat:42.9446,lng:-122.1090,name:"Crater Lake",emoji:"🌋",color:"#a855f7",label:"Deepest lake in the US",type:"nature"},
+  {lat:46.1912,lng:-122.1956,name:"Mt. St. Helens",emoji:"🗻",color:"#6366f1",label:"Johnston Ridge Observatory",type:"nature"},
+  {lat:47.6062,lng:-122.3321,name:"Seattle",emoji:"⚽",color:"#f0a500",label:"USA vs Australia · Lumen Field",type:"match"},
+  {lat:36.1699,lng:-115.1398,name:"Las Vegas",emoji:"🎰",color:"#ec4899",label:"The Strip · Sphere",type:"city"},
+  {lat:36.0544,lng:-112.1401,name:"Grand Canyon",emoji:"🏜️",color:"#f97316",label:"South Rim · Bright Angel Trail",type:"nature"},
+  {lat:34.0195,lng:-118.4912,name:"Santa Monica",emoji:"🏖️",color:"#3b82f6",label:"Santa Monica Pier · beach days",type:"city"},
+  {lat:34.0522,lng:-118.2437,name:"Los Angeles",emoji:"⚽",color:"#f0a500",label:"USA vs Turkey · SoFi Stadium · fly home from LAX",type:"match"},
+];
+const map=L.map('hero-map',{center:[40.5,-116.5],zoom:5,zoomControl:false,scrollWheelZoom:false});
+L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{attribution:'© OpenStreetMap © CARTO',maxZoom:19}).addTo(map);
+L.control.zoom({position:'bottomright'}).addTo(map);
+const rc=stops.map(s=>[s.lat,s.lng]);
+L.polyline(rc,{color:'rgba(0,0,0,0.4)',weight:5}).addTo(map);
+L.polyline(rc,{color:'rgba(240,165,0,0.35)',weight:3}).addTo(map);
+L.polyline(rc,{color:'rgba(240,165,0,0.9)',weight:2,dashArray:'8 10',lineCap:'round'}).addTo(map);
+stops.forEach((s,i)=>{
+  const icon=L.divIcon({className:'',html:`<div style="position:relative;width:36px;height:36px;"><div style="width:36px;height:36px;background:${s.color};border-radius:50% 50% 50% 0;transform:rotate(-45deg);border:2px solid rgba(0,0,0,0.5);box-shadow:0 4px 16px rgba(0,0,0,0.6)${s.type==='match'?',0 0 14px rgba(240,165,0,0.5)':''};display:flex;align-items:center;justify-content:center;"><span style="transform:rotate(45deg);font-size:15px;line-height:1;">${s.emoji}</span></div><div style="position:absolute;top:-8px;right:-8px;width:18px;height:18px;border-radius:50%;background:#0a0a0a;border:1.5px solid ${s.color};color:${s.color};font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;font-family:'DM Sans',sans-serif;line-height:1;">${i+1}</div></div>`,iconSize:[36,36],iconAnchor:[18,36],popupAnchor:[0,-42]});
+  L.marker([s.lat,s.lng],{icon}).addTo(map).bindPopup(`<div style="min-width:170px;"><div style="font-size:10px;text-transform:uppercase;letter-spacing:0.12em;color:${s.color};margin-bottom:4px;">Stop ${i+1}</div><div style="font-weight:600;font-size:15px;color:#f5f2eb;">${s.name}</div><div style="font-size:12px;color:#888;margin-top:3px;">${s.label}</div></div>`);
+});
+map.fitBounds(L.latLngBounds(rc),{padding:[52,52]});
+
+// ── LIKES (localStorage per post) ────────────────────────────────────────────
+function getLikes(id){return parseInt(localStorage.getItem('likes_'+id)||'0');}
+function hasLiked(id){return localStorage.getItem('liked_'+id)==='1';}
+function setLiked(id,count){localStorage.setItem('liked_'+id,'1');localStorage.setItem('likes_'+id,count);}
+
+// ── POSTS ────────────────────────────────────────────────────────────────────
+// IMPORTANT: Replace YOUR_CUSDIS_APP_ID below with your actual Cusdis app ID
+// Get it free at https://cusdis.com → sign up → create an app → copy the app ID
+const CUSDIS_APP_ID = 'YOUR_CUSDIS_APP_ID';
+
+async function loadPosts(){
+  const container=document.getElementById('posts-container');
+  try{
+    const res=await fetch('posts.json?v='+Date.now());
+    const posts=await res.json();
+    if(!posts.length){container.innerHTML='<p style="color:var(--gray)">No posts yet — check back once the trip starts!</p>';return;}
+    container.innerHTML='';
+    posts.forEach(post=>{
+      const imgCount=post.images?post.images.length:0;
+      const imagesHtml=imgCount>0?`<div class="post-images count-${Math.min(imgCount,4)}">${post.images.slice(0,4).map(src=>`<div class="img-wrap"><img src="${src}" alt="" loading="lazy" onclick="openLb('${src}')"/></div>`).join('')}</div>`:'';
+      const likeCount=getLikes(post.id);
+      const liked=hasLiked(post.id);
+      const el=document.createElement('article');
+      el.className='post-card';
+      el.id='post-'+post.id;
+      el.innerHTML=`
+        <div class="post-card-header">
+          <div class="post-meta">
+            ${post.tag?`<span class="post-tag">${post.tag}</span>`:''}
+            <span class="post-date">${post.date}</span>
+            ${post.location?`<span class="post-location">📍 ${post.location}</span>`:''}
+          </div>
+          <div class="post-title">${post.title}</div>
+          <div class="post-body">${post.body.replace(/\n/g,'<br/>')}</div>
+        </div>
+        ${imagesHtml}
+        <div class="post-reactions">
+          <button class="reaction-btn${liked?' reacted':''}" onclick="toggleLike('${post.id}',this)">
+            ❤️ <span class="reaction-count">${likeCount||'Like'}</span>
+          </button>
+          <button class="comments-toggle" onclick="toggleComments('${post.id}',this)">
+            💬 Comments
+          </button>
+        </div>
+        <div class="comments-wrapper" id="comments-${post.id}">
+          <div id="cusdis-${post.id}"></div>
+        </div>`;
+      container.appendChild(el);
+    });
+  }catch(e){
+    container.innerHTML='<p style="color:var(--gray)">Posts loading — refresh if this persists.</p>';
+  }
+}
+loadPosts();
+
+function toggleLike(id,btn){
+  if(hasLiked(id))return;
+  const current=getLikes(id);
+  const next=current+1;
+  setLiked(id,next);
+  btn.classList.add('reacted');
+  btn.querySelector('.reaction-count').textContent=next;
+}
+
+function toggleComments(postId,btn){
+  const wrapper=document.getElementById('comments-'+postId);
+  const isOpen=wrapper.classList.contains('open');
+  wrapper.classList.toggle('open');
+  btn.textContent=isOpen?'💬 Comments':'💬 Hide';
+  // Lazy-load Cusdis only when opened
+  if(!isOpen&&CUSDIS_APP_ID!=='YOUR_CUSDIS_APP_ID'){
+    const target=document.getElementById('cusdis-'+postId);
+    if(!target.hasAttribute('data-loaded')){
+      target.setAttribute('data-loaded','1');
+      const script=document.createElement('script');
+      script.src='https://cusdis.com/js/cusdis.es.js';
+      script.async=true;
+      script.defer=true;
+      target.setAttribute('data-app-id',CUSDIS_APP_ID);
+      target.setAttribute('data-page-id','post-'+postId);
+      target.setAttribute('data-page-url',window.location.href+'#post-'+postId);
+      target.setAttribute('data-page-title',document.title);
+      target.setAttribute('data-theme','dark');
+      document.head.appendChild(script);
+    }
+  }else if(!isOpen&&CUSDIS_APP_ID==='YOUR_CUSDIS_APP_ID'){
+    document.getElementById('cusdis-'+postId).innerHTML='<p style="color:var(--gray);font-size:14px;padding:1rem 0;">Add your Cusdis App ID to enable comments — see setup guide.</p>';
+  }
+}
+
+// ── LIGHTBOX ─────────────────────────────────────────────────────────────────
+function openLb(src){document.getElementById('lb-img').src=src;document.getElementById('lightbox').classList.add('open');}
+document.getElementById('lightbox').addEventListener('click',()=>document.getElementById('lightbox').classList.remove('open'));
+document.addEventListener('keydown',e=>{if(e.key==='Escape')document.getElementById('lightbox').classList.remove('open');});
+</script>
+</body>
+</html>
