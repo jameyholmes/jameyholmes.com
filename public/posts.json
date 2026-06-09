@@ -1,1 +1,11 @@
-
+[
+  {
+    "id": "1",
+    "date": "May 15, 2026",
+    "location": "Metuchen, NJ",
+    "title": "We're Going to the World Cup",
+    "body": "It's official — tickets, flights, and a very excited family ready to experience the World Cup on American soil. Three USA group stage matches, ten stops across the West Coast, and a lot of miles in between. Follow along here for updates, photos, and the live map of where we are.",
+    "images": [],
+    "tag": "Announcement"
+  }
+]
