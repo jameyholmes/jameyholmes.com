@@ -1,8 +1,5 @@
 {
-  "name": "holmes-worldcup",
-  "version": "1.0.0",
-  "description": "Holmes Family World Cup Trip Site",
-  "dependencies": {
-    "node-fetch": "^3.3.2"
-  }
-}
+     "name": "holmes-worldcup",
+     "version": "1.0.0",
+     "description": "Holmes Family World Cup Trip Site"
+   }
