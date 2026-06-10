@@ -322,8 +322,12 @@ function toggleComments(postId,btn){
   const isOpen=wrapper.classList.contains('open');
   wrapper.classList.toggle('open');
   btn.textContent=isOpen?'💬 Comments':'💬 Hide';
-  if(!isOpen && window.CUSDIS){
-    window.CUSDIS.renderTo(document.getElementById('cusdis-'+postId));
+  if(!isOpen){
+    setTimeout(function(){
+      if(window.CUSDIS){
+        window.CUSDIS.renderTo(document.getElementById('cusdis-'+postId));
+      }
+    }, 100);
   }
 }
 
