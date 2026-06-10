@@ -261,7 +261,7 @@ function hasLiked(id){return localStorage.getItem('liked_'+id)==='1';}
 function setLiked(id,count){localStorage.setItem('liked_'+id,'1');localStorage.setItem('likes_'+id,count);}
 
 // ── POSTS ────────────────────────────────────────────────────────────────────
-// IMPORTANT: Replace YOUR_CUSDIS_APP_ID below with your actual Cusdis app ID
+// IMPORTANT: Replace 3f09dd46-c708-46e1-bb64-27b4b440361a below with your actual Cusdis app ID
 // Get it free at https://cusdis.com → sign up → create an app → copy the app ID
 const CUSDIS_APP_ID = '3f09dd46-c708-46e1-bb64-27b4b440361a';
 
@@ -325,7 +325,7 @@ function toggleComments(postId,btn){
   wrapper.classList.toggle('open');
   btn.textContent=isOpen?'💬 Comments':'💬 Hide';
   // Lazy-load Cusdis only when opened
-  if(!isOpen&&CUSDIS_APP_ID!=='YOUR_CUSDIS_APP_ID'){
+  if(!isOpen&&CUSDIS_APP_ID!=='3f09dd46-c708-46e1-bb64-27b4b440361a'){
     const target=document.getElementById('cusdis-'+postId);
     if(!target.hasAttribute('data-loaded')){
       target.setAttribute('data-loaded','1');
@@ -340,7 +340,7 @@ function toggleComments(postId,btn){
       target.setAttribute('data-theme','dark');
       document.head.appendChild(script);
     }
-  }else if(!isOpen&&CUSDIS_APP_ID==='YOUR_CUSDIS_APP_ID'){
+  }else if(!isOpen&&CUSDIS_APP_ID==='3f09dd46-c708-46e1-bb64-27b4b440361a'){
     document.getElementById('cusdis-'+postId).innerHTML='<p style="color:var(--gray);font-size:14px;padding:1rem 0;">Add your Cusdis App ID to enable comments — see setup guide.</p>';
   }
 }
