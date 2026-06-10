@@ -55,7 +55,6 @@ section{padding:5.5rem 2.5rem;border-bottom:1px solid var(--border);}
 .section-label{font-size:11px;text-transform:uppercase;letter-spacing:0.2em;color:var(--gold);margin-bottom:0.5rem;}
 .section-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(48px,7vw,80px);color:var(--white);margin-bottom:2.5rem;line-height:1;}
 
-/* POSTS */
 #posts-container{display:flex;flex-direction:column;gap:3rem;max-width:820px;}
 .post-card{background:#0f0f0f;border:1px solid var(--border);border-radius:12px;overflow:hidden;}
 .post-card-header{padding:1.5rem 1.75rem 1.25rem;}
@@ -66,7 +65,6 @@ section{padding:5.5rem 2.5rem;border-bottom:1px solid var(--border);}
 .post-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(28px,4vw,44px);letter-spacing:0.02em;line-height:1.05;color:var(--white);margin-bottom:0.875rem;}
 .post-body{font-size:15px;color:rgba(245,242,235,0.72);line-height:1.8;}
 
-/* Photo grid */
 .post-images{display:grid;gap:3px;}
 .post-images.count-1{grid-template-columns:1fr;}
 .post-images.count-2{grid-template-columns:1fr 1fr;}
@@ -77,31 +75,23 @@ section{padding:5.5rem 2.5rem;border-bottom:1px solid var(--border);}
 .img-wrap img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.35s;}
 .img-wrap:hover img{transform:scale(1.04);}
 
-/* Reactions bar */
 .post-reactions{display:flex;align-items:center;gap:1rem;padding:0.875rem 1.75rem;border-top:1px solid var(--border);}
 .reaction-btn{background:none;border:1px solid var(--border);border-radius:20px;padding:5px 14px;color:var(--gray);font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;transition:all 0.2s;font-family:'DM Sans',sans-serif;}
 .reaction-btn:hover{border-color:rgba(240,165,0,0.4);color:var(--white);}
 .reaction-btn.reacted{border-color:var(--gold);color:var(--gold);background:rgba(240,165,0,0.08);}
 .reaction-count{font-size:13px;font-weight:600;}
-
-/* Comments toggle */
 .comments-toggle{margin-left:auto;background:none;border:none;color:var(--gray);font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif;display:flex;align-items:center;gap:6px;padding:5px 0;transition:color 0.2s;}
 .comments-toggle:hover{color:var(--white);}
 
-/* Cusdis embed wrapper */
 .comments-wrapper{padding:1.5rem 1.75rem;border-top:1px solid var(--border);display:none;}
 .comments-wrapper.open{display:block;}
-/* Override Cusdis for dark theme */
-#cusdis_thread iframe{color-scheme:dark;}
 
-/* Lightbox */
 #lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.93);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out;}
 #lightbox.open{display:flex;}
 #lightbox img{max-width:92vw;max-height:90vh;object-fit:contain;border-radius:4px;}
 #lb-close{position:absolute;top:1.25rem;right:1.5rem;font-size:28px;color:rgba(255,255,255,0.45);cursor:pointer;}
 #lb-close:hover{color:var(--white);}
 
-/* ITINERARY */
 .itin-list{display:flex;flex-direction:column;max-width:640px;}
 .itin-item{display:grid;grid-template-columns:32px 1fr;gap:0 1.25rem;padding:0 0 2rem;position:relative;}
 .itin-line{position:absolute;left:15px;top:32px;bottom:0;width:2px;background:linear-gradient(to bottom,rgba(240,165,0,0.6),rgba(240,165,0,0.05));}
@@ -113,7 +103,6 @@ section{padding:5.5rem 2.5rem;border-bottom:1px solid var(--border);}
 .itin-detail{font-size:13px;color:var(--gray);margin-top:2px;line-height:1.5;}
 .itin-badge{display:inline-block;margin-top:6px;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;padding:3px 9px;border-radius:4px;background:rgba(240,165,0,0.12);color:var(--gold);border:1px solid rgba(240,165,0,0.25);}
 
-/* MATCHES */
 .match-item{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:1.5rem;padding:1.5rem 0;border-bottom:1px solid var(--border);}
 .match-flag{font-size:28px;line-height:1;}
 .match-teams{font-size:18px;font-weight:600;color:var(--white);}
@@ -182,14 +171,12 @@ footer{padding:3rem 2.5rem;display:flex;align-items:center;justify-content:space
   </div>
 </div>
 
-<!-- BLOG -->
 <section id="blog">
   <div class="section-label">On the ground</div>
   <h2 class="section-title">From the Road</h2>
   <div id="posts-container"><p style="color:var(--gray)">Loading...</p></div>
 </section>
 
-<!-- ITINERARY -->
 <section id="itinerary">
   <div class="section-label">The full route</div>
   <h2 class="section-title">Itinerary</h2>
@@ -208,7 +195,6 @@ footer{padding:3rem 2.5rem;display:flex;align-items:center;justify-content:space
   </div>
 </section>
 
-<!-- MATCHES -->
 <section id="matches">
   <div class="section-label">The reason we're here</div>
   <h2 class="section-title">Match Schedule</h2>
@@ -240,7 +226,7 @@ const stops=[
   {lat:36.1699,lng:-115.1398,name:"Las Vegas",emoji:"🎰",color:"#ec4899",label:"The Strip · Sphere",type:"city"},
   {lat:36.0544,lng:-112.1401,name:"Grand Canyon",emoji:"🏜️",color:"#f97316",label:"South Rim · Bright Angel Trail",type:"nature"},
   {lat:34.0195,lng:-118.4912,name:"Santa Monica",emoji:"🏖️",color:"#3b82f6",label:"Santa Monica Pier · beach days",type:"city"},
-  {lat:34.0522,lng:-118.2437,name:"Los Angeles",emoji:"⚽",color:"#f0a500",label:"USA vs Turkey · SoFi Stadium · fly home from LAX",type:"match"},
+  {lat:34.0522,lng:-118.2437,name:"Los Angeles",emoji:"⚽",color:"#f0a500",label:"USA vs Turkey · SoFi Stadium · fly home",type:"match"},
 ];
 const map=L.map('hero-map',{center:[40.5,-116.5],zoom:5,zoomControl:false,scrollWheelZoom:false});
 L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{attribution:'© OpenStreetMap © CARTO',maxZoom:19}).addTo(map);
@@ -255,16 +241,15 @@ stops.forEach((s,i)=>{
 });
 map.fitBounds(L.latLngBounds(rc),{padding:[52,52]});
 
-// ── LIKES (localStorage per post) ────────────────────────────────────────────
+// ── LIKES ────────────────────────────────────────────────────────────────────
 function getLikes(id){return parseInt(localStorage.getItem('likes_'+id)||'0');}
 function hasLiked(id){return localStorage.getItem('liked_'+id)==='1';}
 function setLiked(id,count){localStorage.setItem('liked_'+id,'1');localStorage.setItem('likes_'+id,count);}
 
-// ── POSTS ────────────────────────────────────────────────────────────────────
-// IMPORTANT: Replace 3f09dd46-c708-46e1-bb64-27b4b440361a below with your actual Cusdis app ID
-// Get it free at https://cusdis.com → sign up → create an app → copy the app ID
+// ── CUSDIS APP ID — already configured ───────────────────────────────────────
 const CUSDIS_APP_ID = '3f09dd46-c708-46e1-bb64-27b4b440361a';
 
+// ── POSTS ────────────────────────────────────────────────────────────────────
 async function loadPosts(){
   const container=document.getElementById('posts-container');
   try{
@@ -300,7 +285,13 @@ async function loadPosts(){
           </button>
         </div>
         <div class="comments-wrapper" id="comments-${post.id}">
-          <div id="cusdis-${post.id}"></div>
+          <div id="cusdis-${post.id}"
+            data-app-id="${CUSDIS_APP_ID}"
+            data-page-id="post-${post.id}"
+            data-page-url="${window.location.origin}#post-${post.id}"
+            data-page-title="${post.title}"
+            data-theme="dark">
+          </div>
         </div>`;
       container.appendChild(el);
     });
@@ -310,10 +301,17 @@ async function loadPosts(){
 }
 loadPosts();
 
+// Load Cusdis script once on page load
+(function(){
+  const script=document.createElement('script');
+  script.src='https://cusdis.com/js/cusdis.es.js';
+  script.async=true;
+  document.head.appendChild(script);
+})();
+
 function toggleLike(id,btn){
   if(hasLiked(id))return;
-  const current=getLikes(id);
-  const next=current+1;
+  const next=getLikes(id)+1;
   setLiked(id,next);
   btn.classList.add('reacted');
   btn.querySelector('.reaction-count').textContent=next;
@@ -324,26 +322,9 @@ function toggleComments(postId,btn){
   const isOpen=wrapper.classList.contains('open');
   wrapper.classList.toggle('open');
   btn.textContent=isOpen?'💬 Comments':'💬 Hide';
-  // Lazy-load Cusdis only when opened
-  if(!isOpen&&CUSDIS_APP_ID!=='3f09dd46-c708-46e1-bb64-27b4b440361a'){
-    const target=document.getElementById('cusdis-'+postId);
-if(!target.hasAttribute('data-loaded')){
-  target.setAttribute('data-loaded','1');
-  target.setAttribute('data-app-id',CUSDIS_APP_ID);
-  target.setAttribute('data-page-id','post-'+postId);
-  target.setAttribute('data-page-url',window.location.href+'#post-'+postId);
-  target.setAttribute('data-page-title',document.title);
-  target.setAttribute('data-theme','dark');
-  if(!document.getElementById('cusdis-script')){
-    const script=document.createElement('script');
-    script.id='cusdis-script';
-    script.src='https://cusdis.com/js/cusdis.es.js';
-    script.async=true;
-    document.head.appendChild(script);
-  } else {
-    window.CUSDIS && window.CUSDIS.renderTo(target);
+  if(!isOpen && window.CUSDIS){
+    window.CUSDIS.renderTo(document.getElementById('cusdis-'+postId));
   }
-}
 }
 
 // ── LIGHTBOX ─────────────────────────────────────────────────────────────────
