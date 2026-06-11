@@ -62,24 +62,34 @@ section{padding:5.5rem 2.5rem;border-bottom:1px solid var(--border);}
 .post-images{display:grid;gap:3px;}
 .post-images.count-1{grid-template-columns:1fr;}
 .post-images.count-2{grid-template-columns:1fr 1fr;}
-.post-images.count-3{grid-template-columns:1fr 1fr;grid-template-rows:auto auto;}
+.post-images.count-3{grid-template-columns:1fr 1fr;}
 .post-images.count-3 .img-wrap:first-child{grid-column:1/-1;}
 .post-images.count-4{grid-template-columns:1fr 1fr;}
 .img-wrap{overflow:hidden;background:#1a1a1a;aspect-ratio:4/3;cursor:zoom-in;}
 .img-wrap img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.35s;}
 .img-wrap:hover img{transform:scale(1.04);}
-.post-reactions{display:flex;align-items:center;gap:1rem;padding:0.875rem 1.75rem;border-top:1px solid var(--border);}
+.post-footer{border-top:1px solid var(--border);}
+.post-reactions{display:flex;align-items:center;gap:1rem;padding:0.875rem 1.75rem;}
 .reaction-btn{background:none;border:1px solid var(--border);border-radius:20px;padding:5px 14px;color:var(--gray);font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;transition:all 0.2s;font-family:'DM Sans',sans-serif;}
 .reaction-btn:hover{border-color:rgba(240,165,0,0.4);color:var(--white);}
 .reaction-btn.reacted{border-color:var(--gold);color:var(--gold);background:rgba(240,165,0,0.08);}
-.reaction-count{font-size:13px;font-weight:600;}
-.comments-section{padding:1.5rem 1.75rem;border-top:1px solid var(--border);}
-.comments-section h4{font-size:12px;text-transform:uppercase;letter-spacing:0.12em;color:var(--gray);margin-bottom:1rem;}
-#lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.93);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out;}
-#lightbox.open{display:flex;}
-#lightbox img{max-width:92vw;max-height:90vh;object-fit:contain;border-radius:4px;}
-#lb-close{position:absolute;top:1.25rem;right:1.5rem;font-size:28px;color:rgba(255,255,255,0.45);cursor:pointer;}
-#lb-close:hover{color:var(--white);}
+.comments-section{padding:1.25rem 1.75rem 1.5rem;border-top:1px solid var(--border);}
+.comments-label{font-size:11px;text-transform:uppercase;letter-spacing:0.15em;color:var(--gray);margin-bottom:1rem;}
+.comment-item{padding:0.875rem 0;border-bottom:1px solid rgba(255,255,255,0.05);}
+.comment-item:last-of-type{border-bottom:none;}
+.comment-name{font-size:13px;font-weight:600;color:var(--gold);display:inline;}
+.comment-date{font-size:11px;color:var(--gray);margin-left:8px;}
+.comment-text{font-size:14px;color:rgba(245,242,235,0.7);margin-top:4px;line-height:1.6;}
+.comment-reply{margin-top:8px;margin-left:1rem;padding:8px 12px;background:rgba(240,165,0,0.05);border-left:2px solid var(--gold);border-radius:0 4px 4px 0;}
+.comment-reply .comment-name{color:var(--white);}
+.comment-form{margin-top:1.25rem;}
+.comment-form input,.comment-form textarea{width:100%;background:#1a1a1a;border:1px solid var(--border);border-radius:6px;padding:10px 14px;color:var(--white);font-family:'DM Sans',sans-serif;font-size:14px;margin-bottom:8px;outline:none;transition:border-color 0.2s;}
+.comment-form input:focus,.comment-form textarea:focus{border-color:rgba(240,165,0,0.4);}
+.comment-form textarea{resize:vertical;min-height:80px;}
+.comment-submit{background:var(--gold);color:var(--black);border:none;border-radius:6px;padding:9px 20px;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;cursor:pointer;font-family:'DM Sans',sans-serif;transition:opacity 0.2s;}
+.comment-submit:hover{opacity:0.85;}
+.comment-submit:disabled{opacity:0.4;cursor:default;}
+.comment-msg{font-size:13px;margin-top:8px;color:var(--gold);}
 .itin-list{display:flex;flex-direction:column;max-width:640px;}
 .itin-item{display:grid;grid-template-columns:32px 1fr;gap:0 1.25rem;padding:0 0 2rem;position:relative;}
 .itin-line{position:absolute;left:15px;top:32px;bottom:0;width:2px;background:linear-gradient(to bottom,rgba(240,165,0,0.6),rgba(240,165,0,0.05));}
@@ -99,31 +109,27 @@ section{padding:5.5rem 2.5rem;border-bottom:1px solid var(--border);}
 footer{padding:3rem 2.5rem;display:flex;align-items:center;justify-content:space-between;}
 .footer-logo{font-family:'Bebas Neue',sans-serif;font-size:32px;letter-spacing:0.05em;color:rgba(245,242,235,0.12);}
 .footer-right{font-size:13px;color:rgba(245,242,235,0.2);text-align:right;}
+#lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.93);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out;}
+#lightbox.open{display:flex;}
+#lightbox img{max-width:92vw;max-height:90vh;object-fit:contain;border-radius:4px;}
+#lb-close{position:absolute;top:1.25rem;right:1.5rem;font-size:28px;color:rgba(255,255,255,0.45);cursor:pointer;}
+#lb-close:hover{color:var(--white);}
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
 @media(max-width:900px){
   .hero{grid-template-columns:1fr;grid-template-rows:auto 50vh;height:auto;}
   .hero-left{padding:3rem 1.5rem;border-right:none;border-bottom:1px solid var(--border);}
-  .hero-right{height:50vh;}
-  .map-overlay{display:none;}
+  .hero-right{height:50vh;}.map-overlay{display:none;}
 }
 @media(max-width:640px){
-  nav{padding:0 1.25rem;}
-  .nav-links{gap:1.25rem;}
-  .nav-links a{font-size:11px;}
-  section{padding:3.5rem 1.25rem;}
-  .hero-stats{gap:1.25rem;flex-wrap:wrap;}
-  .match-item{grid-template-columns:1fr;gap:0.5rem;}
-  .match-flag,.badge{display:none;}
-  footer{flex-direction:column;gap:0.5rem;text-align:center;}
-  .footer-right{text-align:center;}
-  .post-card-header{padding:1.25rem;}
-  .post-reactions{padding:0.875rem 1.25rem;}
-  .comments-section{padding:1.25rem;}
+  nav{padding:0 1.25rem;}.nav-links{gap:1.25rem;}.nav-links a{font-size:11px;}
+  section{padding:3.5rem 1.25rem;}.hero-stats{gap:1.25rem;flex-wrap:wrap;}
+  .match-item{grid-template-columns:1fr;gap:0.5rem;}.match-flag,.badge{display:none;}
+  footer{flex-direction:column;gap:0.5rem;text-align:center;}.footer-right{text-align:center;}
+  .post-reactions,.comments-section{padding-left:1.25rem;padding-right:1.25rem;}
 }
 </style>
 </head>
 <body>
-
 <nav>
   <a class="nav-logo" href="#">Holmes <span class="accent">⚽</span> World Cup</a>
   <ul class="nav-links">
@@ -198,6 +204,7 @@ footer{padding:3rem 2.5rem;display:flex;align-items:center;justify-content:space
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
+// MAP
 const stops=[
   {lat:34.0522,lng:-118.2437,name:"Los Angeles",emoji:"⚽",color:"#f0a500",label:"USA vs Paraguay · SoFi Stadium",type:"match"},
   {lat:37.7749,lng:-119.5674,name:"Yosemite",emoji:"🏔️",color:"#22c55e",label:"National Park",type:"nature"},
@@ -219,23 +226,78 @@ L.polyline(rc,{color:'rgba(0,0,0,0.4)',weight:5}).addTo(map);
 L.polyline(rc,{color:'rgba(240,165,0,0.35)',weight:3}).addTo(map);
 L.polyline(rc,{color:'rgba(240,165,0,0.9)',weight:2,dashArray:'8 10',lineCap:'round'}).addTo(map);
 stops.forEach((s,i)=>{
-  const icon=L.divIcon({className:'',html:`<div style="position:relative;width:36px;height:36px;"><div style="width:36px;height:36px;background:${s.color};border-radius:50% 50% 50% 0;transform:rotate(-45deg);border:2px solid rgba(0,0,0,0.5);box-shadow:0 4px 16px rgba(0,0,0,0.6)${s.type==='match'?',0 0 14px rgba(240,165,0,0.5)':''};display:flex;align-items:center;justify-content:center;"><span style="transform:rotate(45deg);font-size:15px;line-height:1;">${s.emoji}</span></div><div style="position:absolute;top:-8px;right:-8px;width:18px;height:18px;border-radius:50%;background:#0a0a0a;border:1.5px solid ${s.color};color:${s.color};font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;font-family:'DM Sans',sans-serif;line-height:1;">${i+1}</div></div>`,iconSize:[36,36],iconAnchor:[18,36],popupAnchor:[0,-42]});
+  const icon=L.divIcon({className:'',html:`<div style="position:relative;width:36px;height:36px;"><div style="width:36px;height:36px;background:${s.color};border-radius:50% 50% 50% 0;transform:rotate(-45deg);border:2px solid rgba(0,0,0,0.5);box-shadow:0 4px 16px rgba(0,0,0,0.6)${s.type==='match'?',0 0 14px rgba(240,165,0,0.5)':''};display:flex;align-items:center;justify-content:center;"><span style="transform:rotate(45deg);font-size:15px;line-height:1;">${s.emoji}</span></div><div style="position:absolute;top:-8px;right:-8px;width:18px;height:18px;border-radius:50%;background:#0a0a0a;border:1.5px solid ${s.color};color:${s.color};font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;font-family:sans-serif;line-height:1;">${i+1}</div></div>`,iconSize:[36,36],iconAnchor:[18,36],popupAnchor:[0,-42]});
   L.marker([s.lat,s.lng],{icon}).addTo(map).bindPopup(`<div style="min-width:170px;"><div style="font-size:10px;text-transform:uppercase;letter-spacing:0.12em;color:${s.color};margin-bottom:4px;">Stop ${i+1}</div><div style="font-weight:600;font-size:15px;color:#f5f2eb;">${s.name}</div><div style="font-size:12px;color:#888;margin-top:3px;">${s.label}</div></div>`);
 });
 map.fitBounds(L.latLngBounds(rc),{padding:[52,52]});
 
+// LIKES
 function getLikes(id){return parseInt(localStorage.getItem('likes_'+id)||'0');}
 function hasLiked(id){return localStorage.getItem('liked_'+id)==='1';}
-function setLiked(id,count){localStorage.setItem('liked_'+id,'1');localStorage.setItem('likes_'+id,count);}
 function toggleLike(id,btn){
   if(hasLiked(id))return;
   const next=getLikes(id)+1;
-  setLiked(id,next);
+  localStorage.setItem('liked_'+id,'1');
+  localStorage.setItem('likes_'+id,next);
   btn.classList.add('reacted');
   btn.querySelector('.reaction-count').textContent=next;
 }
 
+// COMMENTS
+let allComments={};
+
+async function loadComments(){
+  try{
+    const res=await fetch('comments.json?v='+Date.now());
+    allComments=await res.json();
+  }catch(e){ allComments={}; }
+}
+
+function renderComments(postId, container){
+  const list=allComments[postId]||[];
+  if(!list.length){
+    container.innerHTML='<p style="color:var(--gray);font-size:13px;">No comments yet — be the first!</p>';
+    return;
+  }
+  container.innerHTML=list.map(c=>`
+    <div class="comment-item">
+      <span class="comment-name">${c.name}</span>
+      <span class="comment-date">${c.date}</span>
+      <div class="comment-text">${c.message}</div>
+      ${c.reply?`<div class="comment-reply"><span class="comment-name">Jamey & Julia</span><div class="comment-text">${c.reply}</div></div>`:''}
+    </div>`).join('');
+}
+
+async function submitComment(postId, name, message, btn, msgEl, listEl){
+  btn.disabled=true;
+  btn.textContent='Posting...';
+  try{
+    const res=await fetch('/.netlify/functions/comment',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({postId,name,message})
+    });
+    const data=await res.json();
+    if(data.ok){
+      if(!allComments[postId])allComments[postId]=[];
+      allComments[postId].push(data.comment);
+      renderComments(postId,listEl);
+      msgEl.textContent='Comment posted!';
+      document.getElementById('cname-'+postId).value='';
+      document.getElementById('cmsg-'+postId).value='';
+    } else {
+      msgEl.textContent='Error: '+data.error;
+    }
+  }catch(e){
+    msgEl.textContent='Failed to post. Try again.';
+  }
+  btn.disabled=false;
+  btn.textContent='Post Comment';
+}
+
+// POSTS
 async function loadPosts(){
+  await loadComments();
   const container=document.getElementById('posts-container');
   try{
     const res=await fetch('posts.json?v='+Date.now());
@@ -260,38 +322,42 @@ async function loadPosts(){
           <div class="post-body">${post.body.replace(/\n/g,'<br/>')}</div>
         </div>
         ${imagesHtml}
-        <div class="post-reactions">
-          <button class="reaction-btn${liked?' reacted':''}" onclick="toggleLike('${post.id}',this)">
-            ❤️ <span class="reaction-count">${likeCount||'Like'}</span>
-          </button>
-        </div>
-        <div class="comments-section">
-          <h4>Comments</h4>
-          <div
-            class="cusdis_thread"
-            data-app-id="3f09dd46-c708-46e1-bb64-27b4b440361a"
-            data-page-id="post-${post.id}"
-            data-page-url="https://jameyholmes.com#post-${post.id}"
-            data-page-title="${post.title}"
-            data-theme="dark"
-          ></div>
+        <div class="post-footer">
+          <div class="post-reactions">
+            <button class="reaction-btn${liked?' reacted':''}" onclick="toggleLike('${post.id}',this)">
+              ❤️ <span class="reaction-count">${likeCount||'Like'}</span>
+            </button>
+          </div>
+          <div class="comments-section">
+            <div class="comments-label">Comments</div>
+            <div id="clist-${post.id}"></div>
+            <div class="comment-form">
+              <input id="cname-${post.id}" type="text" placeholder="Your name" maxlength="50"/>
+              <textarea id="cmsg-${post.id}" placeholder="Leave a comment..." maxlength="500"></textarea>
+              <button class="comment-submit" onclick="
+                submitComment(
+                  '${post.id}',
+                  document.getElementById('cname-${post.id}').value.trim(),
+                  document.getElementById('cmsg-${post.id}').value.trim(),
+                  this,
+                  document.getElementById('cmsg-status-${post.id}'),
+                  document.getElementById('clist-${post.id}')
+                )
+              ">Post Comment</button>
+              <div id="cmsg-status-${post.id}" class="comment-msg"></div>
+            </div>
+          </div>
         </div>`;
       container.appendChild(el);
+      renderComments(post.id, document.getElementById('clist-'+post.id));
     });
-    // Init Cusdis after all posts are in the DOM
-    if(window.CUSDIS) window.CUSDIS.initial();
   }catch(e){
     container.innerHTML='<p style="color:var(--gray)">Posts loading — refresh if this persists.</p>';
   }
 }
+loadPosts();
 
-// Load Cusdis then load posts
-var s=document.createElement('script');
-s.src='https://cusdis.com/js/cusdis.es.js';
-s.async=true;
-s.onload=function(){ loadPosts(); };
-document.head.appendChild(s);
-
+// LIGHTBOX
 function openLb(src){document.getElementById('lb-img').src=src;document.getElementById('lightbox').classList.add('open');}
 document.getElementById('lightbox').addEventListener('click',()=>document.getElementById('lightbox').classList.remove('open'));
 document.addEventListener('keydown',e=>{if(e.key==='Escape')document.getElementById('lightbox').classList.remove('open');});
