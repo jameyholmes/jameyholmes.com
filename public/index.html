@@ -144,7 +144,7 @@ footer{padding:3rem 2.5rem;display:flex;align-items:center;justify-content:space
     <div class="hero-bg"></div><div class="hero-grid"></div><div class="hero-flag"></div>
     <div class="hero-eyebrow">FIFA World Cup 2026 · West Coast USA</div>
     <h1 class="hero-title">Holmes<br/><span class="stroke">Family</span><br/><span class="accent">Trip.</span></h1>
-    <p class="hero-sub">Two weeks. Eleven stops. Three USA group stage matches. Following the greatest tournament on American soil.</p>
+    <p class="hero-sub">Three weeks. Eleven stops. Three USA group stage matches. Following the greatest tournament on American soil.</p>
     <div class="hero-stats">
       <div><div class="stat-num">11</div><div class="stat-label">Stops</div></div>
       <div class="stat-divider"></div>
@@ -231,16 +231,27 @@ stops.forEach((s,i)=>{
 });
 map.fitBounds(L.latLngBounds(rc),{padding:[52,52]});
 
-// LIKES
-function getLikes(id){return parseInt(localStorage.getItem('likes_'+id)||'0');}
-function hasLiked(id){return localStorage.getItem('liked_'+id)==='1';}
-function toggleLike(id,btn){
-  if(hasLiked(id))return;
-  const next=getLikes(id)+1;
-  localStorage.setItem('liked_'+id,'1');
-  localStorage.setItem('likes_'+id,next);
-  btn.classList.add('reacted');
-  btn.querySelector('.reaction-count').textContent=next;
+// LIKES — server-side, stored in comments.json
+function hasLikedLocally(id){return localStorage.getItem('liked_'+id)==='1';}
+function setLikedLocally(id){localStorage.setItem('liked_'+id,'1');}
+
+async function toggleLike(id, btn){
+  if(hasLikedLocally(id)) return;
+  btn.disabled=true;
+  try{
+    const res=await fetch('/.netlify/functions/comment',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({action:'like', postId:id})
+    });
+    const data=await res.json();
+    if(data.ok){
+      setLikedLocally(id);
+      btn.classList.add('reacted');
+      btn.querySelector('.reaction-count').textContent=data.likes;
+    }
+  }catch(e){ console.error('Like failed',e); }
+  btn.disabled=false;
 }
 
 // COMMENTS
@@ -249,17 +260,26 @@ let allComments={};
 async function loadComments(){
   try{
     const res=await fetch('comments.json?v='+Date.now());
-    allComments=await res.json();
+    const raw=await res.json();
+    // Support both old format (postId -> array) and new format (postId -> {likes, comments})
+    allComments=raw;
   }catch(e){ allComments={}; }
 }
 
+function getPostData(postId){
+  const d=allComments[postId];
+  if(!d) return {likes:0, comments:[]};
+  if(Array.isArray(d)) return {likes:0, comments:d}; // legacy
+  return {likes: d.likes||0, comments: d.comments||[]};
+}
+
 function renderComments(postId, container){
-  const list=allComments[postId]||[];
-  if(!list.length){
+  const {comments}=getPostData(postId);
+  if(!comments.length){
     container.innerHTML='<p style="color:var(--gray);font-size:13px;">No comments yet — be the first!</p>';
     return;
   }
-  container.innerHTML=list.map(c=>`
+  container.innerHTML=comments.map(c=>`
     <div class="comment-item">
       <span class="comment-name">${c.name}</span>
       <span class="comment-date">${c.date}</span>
@@ -269,18 +289,21 @@ function renderComments(postId, container){
 }
 
 async function submitComment(postId, name, message, btn, msgEl, listEl){
+  if(!name||!message){msgEl.textContent='Please enter your name and a comment.';return;}
   btn.disabled=true;
   btn.textContent='Posting...';
   try{
     const res=await fetch('/.netlify/functions/comment',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({postId,name,message})
+      body:JSON.stringify({action:'comment', postId, name, message})
     });
     const data=await res.json();
     if(data.ok){
-      if(!allComments[postId])allComments[postId]=[];
-      allComments[postId].push(data.comment);
+      const pd=getPostData(postId);
+      pd.comments.push(data.comment);
+      if(!allComments[postId]) allComments[postId]={likes:0,comments:[]};
+      allComments[postId].comments=pd.comments;
       renderComments(postId,listEl);
       msgEl.textContent='Comment posted!';
       document.getElementById('cname-'+postId).value='';
@@ -307,8 +330,8 @@ async function loadPosts(){
     posts.forEach(post=>{
       const imgCount=post.images?post.images.length:0;
       const imagesHtml=imgCount>0?`<div class="post-images count-${Math.min(imgCount,4)}">${post.images.slice(0,4).map(src=>`<div class="img-wrap"><img src="${src}" alt="" loading="lazy" onclick="openLb('${src}')"/></div>`).join('')}</div>`:'';
-      const liked=hasLiked(post.id);
-      const likeCount=getLikes(post.id);
+      const {likes}=getPostData(post.id);
+      const liked=hasLikedLocally(post.id);
       const el=document.createElement('article');
       el.className='post-card';
       el.innerHTML=`
@@ -325,7 +348,7 @@ async function loadPosts(){
         <div class="post-footer">
           <div class="post-reactions">
             <button class="reaction-btn${liked?' reacted':''}" onclick="toggleLike('${post.id}',this)">
-              ❤️ <span class="reaction-count">${likeCount||'Like'}</span>
+              ❤️ <span class="reaction-count">${likes||'Like'}</span>
             </button>
           </div>
           <div class="comments-section">
