@@ -14,14 +14,12 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
 body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.6;overflow-x:hidden;}
-
 nav{position:sticky;top:0;z-index:1000;background:rgba(10,10,10,0.95);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:0 2.5rem;display:flex;align-items:center;justify-content:space-between;height:58px;}
 .nav-logo{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:0.05em;color:var(--white);text-decoration:none;}
 .nav-logo .accent{color:var(--gold);}
 .nav-links{display:flex;gap:2.5rem;list-style:none;}
 .nav-links a{color:var(--gray);text-decoration:none;font-size:13px;font-weight:500;text-transform:uppercase;letter-spacing:0.1em;transition:color 0.2s;}
 .nav-links a:hover{color:var(--white);}
-
 .hero{display:grid;grid-template-columns:1fr 1fr;height:calc(100vh - 58px);min-height:600px;border-bottom:1px solid var(--border);}
 .hero-left{display:flex;flex-direction:column;justify-content:flex-end;padding:3.5rem 3rem 4rem;position:relative;overflow:hidden;border-right:1px solid var(--border);}
 .hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 20% 80%,rgba(240,165,0,0.06) 0%,transparent 60%),radial-gradient(ellipse 60% 50% at 80% 20%,rgba(212,43,43,0.07) 0%,transparent 55%);}
@@ -38,7 +36,6 @@ nav{position:sticky;top:0;z-index:1000;background:rgba(10,10,10,0.95);backdrop-f
 .stat-divider{width:1px;background:var(--border);align-self:stretch;}
 .hero-right{position:relative;overflow:hidden;}
 #hero-map{position:absolute;inset:0;width:100%;height:100%;}
-
 .leaflet-container{background:#0d1117 !important;}
 .leaflet-popup-content-wrapper{background:#1c1c1c !important;color:var(--white) !important;border:1px solid rgba(255,255,255,0.12) !important;border-radius:10px !important;box-shadow:0 12px 40px rgba(0,0,0,0.8) !important;}
 .leaflet-popup-tip{background:#1c1c1c !important;}
@@ -50,11 +47,9 @@ nav{position:sticky;top:0;z-index:1000;background:rgba(10,10,10,0.95);backdrop-f
 .map-overlay{position:absolute;top:16px;left:16px;z-index:500;background:rgba(10,10,10,0.85);backdrop-filter:blur(10px);border:1px solid var(--border);border-radius:8px;padding:10px 14px;pointer-events:none;}
 .map-overlay strong{color:var(--gold);font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:0.05em;display:block;line-height:1;}
 .map-overlay span{font-size:11px;color:var(--gray);text-transform:uppercase;letter-spacing:0.1em;}
-
 section{padding:5.5rem 2.5rem;border-bottom:1px solid var(--border);}
 .section-label{font-size:11px;text-transform:uppercase;letter-spacing:0.2em;color:var(--gold);margin-bottom:0.5rem;}
 .section-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(48px,7vw,80px);color:var(--white);margin-bottom:2.5rem;line-height:1;}
-
 #posts-container{display:flex;flex-direction:column;gap:3rem;max-width:820px;}
 .post-card{background:#0f0f0f;border:1px solid var(--border);border-radius:12px;overflow:hidden;}
 .post-card-header{padding:1.5rem 1.75rem 1.25rem;}
@@ -64,7 +59,6 @@ section{padding:5.5rem 2.5rem;border-bottom:1px solid var(--border);}
 .post-location{font-size:12px;color:var(--gray);}
 .post-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(28px,4vw,44px);letter-spacing:0.02em;line-height:1.05;color:var(--white);margin-bottom:0.875rem;}
 .post-body{font-size:15px;color:rgba(245,242,235,0.72);line-height:1.8;}
-
 .post-images{display:grid;gap:3px;}
 .post-images.count-1{grid-template-columns:1fr;}
 .post-images.count-2{grid-template-columns:1fr 1fr;}
@@ -74,24 +68,18 @@ section{padding:5.5rem 2.5rem;border-bottom:1px solid var(--border);}
 .img-wrap{overflow:hidden;background:#1a1a1a;aspect-ratio:4/3;cursor:zoom-in;}
 .img-wrap img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.35s;}
 .img-wrap:hover img{transform:scale(1.04);}
-
 .post-reactions{display:flex;align-items:center;gap:1rem;padding:0.875rem 1.75rem;border-top:1px solid var(--border);}
 .reaction-btn{background:none;border:1px solid var(--border);border-radius:20px;padding:5px 14px;color:var(--gray);font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;transition:all 0.2s;font-family:'DM Sans',sans-serif;}
 .reaction-btn:hover{border-color:rgba(240,165,0,0.4);color:var(--white);}
 .reaction-btn.reacted{border-color:var(--gold);color:var(--gold);background:rgba(240,165,0,0.08);}
 .reaction-count{font-size:13px;font-weight:600;}
-.comments-toggle{margin-left:auto;background:none;border:none;color:var(--gray);font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif;display:flex;align-items:center;gap:6px;padding:5px 0;transition:color 0.2s;}
-.comments-toggle:hover{color:var(--white);}
-
-.comments-wrapper{padding:1.5rem 1.75rem;border-top:1px solid var(--border);visibility:hidden;height:0;overflow:hidden;}
-.comments-wrapper.open{visibility:visible;height:auto;overflow:visible;}
-
+.comments-section{padding:1.5rem 1.75rem;border-top:1px solid var(--border);}
+.comments-section h4{font-size:12px;text-transform:uppercase;letter-spacing:0.12em;color:var(--gray);margin-bottom:1rem;}
 #lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.93);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out;}
 #lightbox.open{display:flex;}
 #lightbox img{max-width:92vw;max-height:90vh;object-fit:contain;border-radius:4px;}
 #lb-close{position:absolute;top:1.25rem;right:1.5rem;font-size:28px;color:rgba(255,255,255,0.45);cursor:pointer;}
 #lb-close:hover{color:var(--white);}
-
 .itin-list{display:flex;flex-direction:column;max-width:640px;}
 .itin-item{display:grid;grid-template-columns:32px 1fr;gap:0 1.25rem;padding:0 0 2rem;position:relative;}
 .itin-line{position:absolute;left:15px;top:32px;bottom:0;width:2px;background:linear-gradient(to bottom,rgba(240,165,0,0.6),rgba(240,165,0,0.05));}
@@ -102,20 +90,16 @@ section{padding:5.5rem 2.5rem;border-bottom:1px solid var(--border);}
 .itin-name{font-weight:600;font-size:16px;color:var(--white);}
 .itin-detail{font-size:13px;color:var(--gray);margin-top:2px;line-height:1.5;}
 .itin-badge{display:inline-block;margin-top:6px;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;padding:3px 9px;border-radius:4px;background:rgba(240,165,0,0.12);color:var(--gold);border:1px solid rgba(240,165,0,0.25);}
-
 .match-item{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:1.5rem;padding:1.5rem 0;border-bottom:1px solid var(--border);}
 .match-flag{font-size:28px;line-height:1;}
 .match-teams{font-size:18px;font-weight:600;color:var(--white);}
 .match-venue{font-size:13px;color:var(--gray);margin-top:3px;}
 .badge{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;padding:5px 12px;border-radius:5px;white-space:nowrap;}
 .badge-gold{background:rgba(240,165,0,0.12);color:var(--gold);border:1px solid rgba(240,165,0,0.25);}
-
 footer{padding:3rem 2.5rem;display:flex;align-items:center;justify-content:space-between;}
 .footer-logo{font-family:'Bebas Neue',sans-serif;font-size:32px;letter-spacing:0.05em;color:rgba(245,242,235,0.12);}
 .footer-right{font-size:13px;color:rgba(245,242,235,0.2);text-align:right;}
-
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
-
 @media(max-width:900px){
   .hero{grid-template-columns:1fr;grid-template-rows:auto 50vh;height:auto;}
   .hero-left{padding:3rem 1.5rem;border-right:none;border-bottom:1px solid var(--border);}
@@ -134,7 +118,7 @@ footer{padding:3rem 2.5rem;display:flex;align-items:center;justify-content:space
   .footer-right{text-align:center;}
   .post-card-header{padding:1.25rem;}
   .post-reactions{padding:0.875rem 1.25rem;}
-  .comments-wrapper{padding:1.25rem;}
+  .comments-section{padding:1.25rem;}
 }
 </style>
 </head>
@@ -214,7 +198,6 @@ footer{padding:3rem 2.5rem;display:flex;align-items:center;justify-content:space
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
-// ── MAP ──────────────────────────────────────────────────────────────────────
 const stops=[
   {lat:34.0522,lng:-118.2437,name:"Los Angeles",emoji:"⚽",color:"#f0a500",label:"USA vs Paraguay · SoFi Stadium",type:"match"},
   {lat:37.7749,lng:-119.5674,name:"Yosemite",emoji:"🏔️",color:"#22c55e",label:"National Park",type:"nature"},
@@ -241,30 +224,31 @@ stops.forEach((s,i)=>{
 });
 map.fitBounds(L.latLngBounds(rc),{padding:[52,52]});
 
-// ── LIKES ────────────────────────────────────────────────────────────────────
 function getLikes(id){return parseInt(localStorage.getItem('likes_'+id)||'0');}
 function hasLiked(id){return localStorage.getItem('liked_'+id)==='1';}
 function setLiked(id,count){localStorage.setItem('liked_'+id,'1');localStorage.setItem('likes_'+id,count);}
+function toggleLike(id,btn){
+  if(hasLiked(id))return;
+  const next=getLikes(id)+1;
+  setLiked(id,next);
+  btn.classList.add('reacted');
+  btn.querySelector('.reaction-count').textContent=next;
+}
 
-// ── CUSDIS APP ID — already configured ───────────────────────────────────────
-const CUSDIS_APP_ID = '3f09dd46-c708-46e1-bb64-27b4b440361a';
-
-// ── POSTS ────────────────────────────────────────────────────────────────────
 async function loadPosts(){
   const container=document.getElementById('posts-container');
   try{
     const res=await fetch('posts.json?v='+Date.now());
     const posts=await res.json();
-    if(!posts.length){container.innerHTML='<p style="color:var(--gray)">No posts yet — check back once the trip starts!</p>';return;}
+    if(!posts.length){container.innerHTML='<p style="color:var(--gray)">No posts yet!</p>';return;}
     container.innerHTML='';
     posts.forEach(post=>{
       const imgCount=post.images?post.images.length:0;
       const imagesHtml=imgCount>0?`<div class="post-images count-${Math.min(imgCount,4)}">${post.images.slice(0,4).map(src=>`<div class="img-wrap"><img src="${src}" alt="" loading="lazy" onclick="openLb('${src}')"/></div>`).join('')}</div>`:'';
-      const likeCount=getLikes(post.id);
       const liked=hasLiked(post.id);
+      const likeCount=getLikes(post.id);
       const el=document.createElement('article');
       el.className='post-card';
-      el.id='post-'+post.id;
       el.innerHTML=`
         <div class="post-card-header">
           <div class="post-meta">
@@ -280,58 +264,34 @@ async function loadPosts(){
           <button class="reaction-btn${liked?' reacted':''}" onclick="toggleLike('${post.id}',this)">
             ❤️ <span class="reaction-count">${likeCount||'Like'}</span>
           </button>
-          <button class="comments-toggle" onclick="toggleComments('${post.id}',this)">
-            💬 Comments
-          </button>
         </div>
-        <div class="comments-wrapper" id="comments-${post.id}">
-          <div id="cusdis-${post.id}"
-            data-app-id="${CUSDIS_APP_ID}"
+        <div class="comments-section">
+          <h4>Comments</h4>
+          <div
+            class="cusdis_thread"
+            data-app-id="3f09dd46-c708-46e1-bb64-27b4b440361a"
             data-page-id="post-${post.id}"
-            data-page-url="${window.location.origin}#post-${post.id}"
+            data-page-url="https://jameyholmes.com#post-${post.id}"
             data-page-title="${post.title}"
-            data-theme="dark">
-          </div>
+            data-theme="dark"
+          ></div>
         </div>`;
       container.appendChild(el);
     });
+    // Init Cusdis after all posts are in the DOM
+    if(window.CUSDIS) window.CUSDIS.initial();
   }catch(e){
     container.innerHTML='<p style="color:var(--gray)">Posts loading — refresh if this persists.</p>';
   }
 }
-loadPosts();
 
-// Load Cusdis script once on page load
-(function(){
-  const script=document.createElement('script');
-  script.src='https://cusdis.com/js/cusdis.es.js';
-  script.async=true;
-  document.head.appendChild(script);
-})();
+// Load Cusdis then load posts
+var s=document.createElement('script');
+s.src='https://cusdis.com/js/cusdis.es.js';
+s.async=true;
+s.onload=function(){ loadPosts(); };
+document.head.appendChild(s);
 
-function toggleLike(id,btn){
-  if(hasLiked(id))return;
-  const next=getLikes(id)+1;
-  setLiked(id,next);
-  btn.classList.add('reacted');
-  btn.querySelector('.reaction-count').textContent=next;
-}
-
-function toggleComments(postId,btn){
-  const wrapper=document.getElementById('comments-'+postId);
-  const isOpen=wrapper.classList.contains('open');
-  wrapper.classList.toggle('open');
-  btn.textContent=isOpen?'💬 Comments':'💬 Hide';
-  if(!isOpen){
-    setTimeout(function(){
-      if(window.CUSDIS){
-        window.CUSDIS.renderTo(document.getElementById('cusdis-'+postId));
-      }
-    }, 100);
-  }
-}
-
-// ── LIGHTBOX ─────────────────────────────────────────────────────────────────
 function openLb(src){document.getElementById('lb-img').src=src;document.getElementById('lightbox').classList.add('open');}
 document.getElementById('lightbox').addEventListener('click',()=>document.getElementById('lightbox').classList.remove('open'));
 document.addEventListener('keydown',e=>{if(e.key==='Escape')document.getElementById('lightbox').classList.remove('open');});
