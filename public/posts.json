@@ -1,25 +1,9 @@
 [
-  {
-    "id": "1781141080021",
-    "date": "June 11, 2026",
-    "title": "Yosemite at Sunrise!",
-    "body": "What a view! Kids are being good!",
-    "images": []
-  },
-  {
-    "id": "1781140787136",
-    "date": "June 11, 2026",
-    "title": "Yosemite at Sunrise!",
-    "body": "What an amazing view and the Kids are behaving!",
-    "images": [
-      "images/telegram-1781140786048-1.jpg"
-    ]
-  },
-  {
+   {
     "id": "1781020573367",
     "date": "June 9, 2026",
-    "title": "Testing out the posting functionality with this pic of us celebrating the last World Cup.",
-    "body": " ",
+    "title": "4 Years in the Making!",
+    "body": "Rooting on Team USA during the last World Cup ",
     "images": [
       "images/telegram-1781020572126-1.jpg"
     ]
@@ -29,7 +13,7 @@
     "date": "June 1, 2026",
     "location": "Metuchen, NJ",
     "title": "We're Going to the World Cup!",
-    "body": "It's official — tickets, flights, and a very excited family ready to experience the World Cup on American soil. Three USA group stage matches, West Coast National Parks, the Grand Canyon, and a lot of miles in between. Follow along here for updates, photos, and the live map of where we are.",
+    "body": "It's official — tickets, flights, and a very excited family ready to experience the World Cup on American soil. Three USA group stage matches, West Coast National Parks, Vegas Shows, the Grand Canyon, and a lot of miles in between. Follow along here for updates, photos, and the live map of where we are.",
     "images": [],
     "tag": "Announcement"
   }
