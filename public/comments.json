@@ -38,6 +38,14 @@
   },
   "1781280785072": {
     "likes": 3,
-    "comments": []
+    "comments": [
+      {
+        "id": "1781285248452",
+        "name": "Bhavi",
+        "message": "Starting the way champs do!",
+        "date": "June 12, 2026",
+        "approved": true
+      }
+    ]
   }
 }
