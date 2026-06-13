@@ -105,6 +105,14 @@
   },
   "1781367063171": {
     "likes": 1,
-    "comments": []
+    "comments": [
+      {
+        "id": "1781378638164",
+        "name": "Unkle Deezy",
+        "message": "Be sure to leave some shampoo in your car to ward off the bears.",
+        "date": "June 13, 2026",
+        "approved": true
+      }
+    ]
   }
 }
