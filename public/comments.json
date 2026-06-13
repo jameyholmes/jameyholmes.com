@@ -61,6 +61,13 @@
         "message": "Awesome! Enjoy!",
         "date": "June 13, 2026",
         "approved": true
+      },
+      {
+        "id": "1781312516057",
+        "name": "Jenny",
+        "message": "Yay! Loving the live update. Enjoy.",
+        "date": "June 13, 2026",
+        "approved": true
       }
     ]
   }
