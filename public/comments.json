@@ -117,6 +117,14 @@
   },
   "1781389150785": {
     "likes": 1,
-    "comments": []
+    "comments": [
+      {
+        "id": "1781410979045",
+        "name": "Ashish",
+        "message": "Amaze!",
+        "date": "June 14, 2026",
+        "approved": true
+      }
+    ]
   }
 }
