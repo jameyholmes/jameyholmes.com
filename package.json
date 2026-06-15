@@ -1,5 +1,8 @@
 {
-     "name": "holmes-worldcup",
-     "version": "1.0.0",
-     "description": "Holmes Family World Cup Trip Site"
-   }
+  "name": "holmes-worldcup",
+  "version": "1.0.0",
+  "description": "Holmes Family World Cup Trip Site",
+  "dependencies": {
+    "@netlify/blobs": "^8.1.0"
+  }
+}
