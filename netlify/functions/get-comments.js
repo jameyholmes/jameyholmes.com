@@ -1,6 +1,14 @@
 // get-comments.js — reads all comments/likes from Netlify Blobs
 import { getStore } from "@netlify/blobs";
 
+function getStoreWithContext() {
+  return getStore({
+    name: 'worldcup',
+    siteID: process.env.NETLIFY_SITE_ID,
+    token: process.env.NETLIFY_TOKEN,
+  });
+}
+
 const SEED_DATA = {
   "1": { "likes": 1, "comments": [] },
   "1781020573367": { "likes": 7, "comments": [
@@ -36,7 +44,7 @@ export async function handler(event) {
     'Content-Type': 'application/json'
   };
   try {
-    const store = getStore('worldcup');
+    const store = getStoreWithContext();
     const raw = await store.get('comments');
     if (raw) return { statusCode: 200, headers, body: raw };
     // First run — seed
