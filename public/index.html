@@ -259,10 +259,8 @@ let allComments={};
 
 async function loadComments(){
   try{
-    const res=await fetch('comments.json?v='+Date.now());
-    const raw=await res.json();
-    // Support both old format (postId -> array) and new format (postId -> {likes, comments})
-    allComments=raw;
+    const res=await fetch('/.netlify/functions/get-comments');
+    allComments=await res.json();
   }catch(e){ allComments={}; }
 }
 
