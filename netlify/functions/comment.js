@@ -5,7 +5,14 @@
 
 import { getStore } from "@netlify/blobs";
 
-// Existing comments seeded from comments.json — runs once on first call if blob is empty
+function getStoreWithContext() {
+  return getStore({
+    name: 'worldcup',
+    siteID: process.env.NETLIFY_SITE_ID,
+    token: process.env.NETLIFY_TOKEN,
+  });
+}
+
 const SEED_DATA = {
   "1": { "likes": 1, "comments": [] },
   "1781020573367": { "likes": 7, "comments": [
@@ -65,7 +72,7 @@ export async function handler(event) {
   const { action, postId } = body;
   if (!postId) return { statusCode: 400, headers, body: JSON.stringify({ error: 'Missing postId' }) };
 
-  const store = getStore('worldcup');
+  const store = getStoreWithContext();
   const data = await getData(store);
 
   if (!data[postId]) data[postId] = { likes: 0, comments: [] };
