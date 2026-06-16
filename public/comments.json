@@ -129,7 +129,15 @@
   },
   "1781542257430": {
     "likes": 1,
-    "comments": []
+    "comments": [
+      {
+        "id": "1781574916328",
+        "name": "Ashish",
+        "message": "Juvie!",
+        "date": "June 16, 2026",
+        "approved": true
+      }
+    ]
   },
   "1781477353756": {
     "likes": 1,
