@@ -294,6 +294,14 @@
   },
   "1782191048435": {
     "likes": 2,
-    "comments": []
+    "comments": [
+      {
+        "id": "1782231352866",
+        "name": "Marissa",
+        "message": "Enjoy! Watching soccer in cabana + going on the lazy river sounds like a great day!",
+        "date": "June 23, 2026",
+        "approved": true
+      }
+    ]
   }
 }
