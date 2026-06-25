@@ -310,6 +310,14 @@
   },
   "1782346753178": {
     "likes": 3,
-    "comments": []
+    "comments": [
+      {
+        "id": "1782401733876",
+        "name": "Suneet",
+        "message": "What a great trip and site! Let’s go! Enjoy the match today.",
+        "date": "June 25, 2026",
+        "approved": true
+      }
+    ]
   }
 }
