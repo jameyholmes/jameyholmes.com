@@ -285,7 +285,15 @@
   },
   "1781908531715": {
     "likes": 6,
-    "comments": []
+    "comments": [
+      {
+        "id": "1782771889287",
+        "name": "Fabio Ferreira",
+        "message": "Epic!!!!",
+        "date": "June 29, 2026",
+        "approved": true
+      }
+    ]
   },
   "1781983973959": {
     "likes": 6,
