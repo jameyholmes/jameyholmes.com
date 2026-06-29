@@ -178,7 +178,15 @@
   },
   "1781646027861": {
     "likes": 3,
-    "comments": []
+    "comments": [
+      {
+        "id": "1782766059846",
+        "name": "Gloo",
+        "message": "I'm making you a t-shirt that says \"Railbikin’ along puddin' creek.\"",
+        "date": "June 29, 2026",
+        "approved": true
+      }
+    ]
   },
   "1781667761292": {
     "likes": 7,
