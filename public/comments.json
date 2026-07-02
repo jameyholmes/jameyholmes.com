@@ -123,7 +123,15 @@
   },
   "1781327334470": {
     "likes": 13,
-    "comments": []
+    "comments": [
+      {
+        "id": "1783033417559",
+        "name": "Ash",
+        "message": "WOW....You watched US win twice!!!",
+        "date": "July 2, 2026",
+        "approved": true
+      }
+    ]
   },
   "1781367063171": {
     "likes": 5,
