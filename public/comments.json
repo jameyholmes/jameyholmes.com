@@ -353,7 +353,15 @@
   },
   "1782434759615": {
     "likes": 5,
-    "comments": []
+    "comments": [
+      {
+        "id": "1783033222437",
+        "name": "Ash",
+        "message": "Pretty Amazing! Watching US win on US soil in World Cup games.",
+        "date": "July 2, 2026",
+        "approved": true
+      }
+    ]
   },
   "1782454425172": {
     "likes": 2,
